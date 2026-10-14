@@ -8,11 +8,13 @@ const TaskList = () => {
   const axiosSecure = useAxiosSecure();
   const [sortOrder, setSortOrder] = useState("");
 
-  const { data: tasks = [], isLoading } = useQuery({
+  const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["open-tasks"],
     queryFn: async () => (await axiosSecure.get("/api/tasks")).data,
     refetchInterval: 8000, // new tasks from clients appear within a few seconds
   });
+  // if the server ever answers with something that is not a list, show an empty list instead of a blank page
+  const tasks = Array.isArray(data) ? data : [];
 
   const sortedTasks = [...tasks].sort((a, b) => {
     if (sortOrder === "high") return b.payable_amount - a.payable_amount;
@@ -39,7 +41,13 @@ const TaskList = () => {
       </div>
 
       {isLoading && <div className="flex justify-center py-16"><span className="loading loading-ring loading-lg"></span></div>}
-      {!isLoading && !tasks.length && <p className="text-center text-slate-500 py-16">No open tasks right now. Check back soon.</p>}
+      {isError && (
+        <div className="text-center py-10 space-y-3">
+          <p className="text-rose-400 text-sm">Could not load tasks. Check your connection.</p>
+          <button onClick={() => refetch()} className="px-5 py-2 rounded-full bg-[#00d7c0] text-slate-950 font-bold text-sm">Try again</button>
+        </div>
+      )}
+      {!isLoading && !isError && !tasks.length && <p className="text-center text-slate-500 py-16">No open tasks right now. Check back soon.</p>}
 
       <div className="space-y-4">
         {sortedTasks.map((task) => (

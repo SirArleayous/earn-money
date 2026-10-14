@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import useRole from "../../Hooks/useRole";
 import {
-  FaHome, FaTasks, FaWallet, FaUser, FaHeadset, FaPlusCircle,
+  FaHome, FaTasks, FaWallet, FaUser, FaUserFriends, FaPlusCircle,
   FaClipboardList, FaCoins, FaUsers, FaMoneyCheckAlt, FaHistory,
 } from "react-icons/fa";
 
@@ -12,8 +12,8 @@ const TABS = {
     { to: "/dashboard", label: "Home", icon: FaHome, end: true },
     { to: "/dashboard/taskLists", label: "Tasks", icon: FaTasks },
     { to: "/dashboard/withdrawals", label: "Wallet", icon: FaWallet },
+    { to: "/dashboard/referral", label: "Referral", icon: FaUserFriends },
     { to: "/dashboard/profile", label: "Profile", icon: FaUser },
-    { to: "/contact", label: "Contact", icon: FaHeadset },
   ],
   client: [
     { to: "/dashboard", label: "Home", icon: FaHome, end: true },
@@ -29,6 +29,11 @@ const TABS = {
     { to: "/dashboard/withdrawRequests", label: "Payouts", icon: FaMoneyCheckAlt },
     { to: "/dashboard/activityLog", label: "Log", icon: FaHistory },
   ],
+  // shown when the role could not be loaded (server unreachable), so nobody sees the wrong menu
+  unknown: [
+    { to: "/dashboard", label: "Home", icon: FaHome, end: true },
+    { to: "/dashboard/profile", label: "Profile", icon: FaUser },
+  ],
 };
 
 const Sidebar = () => {
@@ -37,7 +42,8 @@ const Sidebar = () => {
   // Role comes from the backend (the admin email is set on the server), so no email hack here
   const isAdmin = role === "Admin";
   const isBuyer = role === "Buyer" || role === "Client";
-  const tabs = isAdmin ? TABS.admin : isBuyer ? TABS.client : TABS.worker;
+  const isWorker = role === "Worker" || role === "User";
+  const tabs = isAdmin ? TABS.admin : isBuyer ? TABS.client : isWorker ? TABS.worker : TABS.unknown;
 
   return (
     <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-lg z-40 px-3 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-2 bg-gradient-to-t from-[#0B0F19] via-[#0B0F19]/95 to-transparent">

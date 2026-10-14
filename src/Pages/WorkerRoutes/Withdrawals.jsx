@@ -27,12 +27,14 @@ const Withdrawals = () => {
   const usdAmount = (Number(coins) * COIN_USD).toFixed(2);
 
   // Real withdrawal history (refreshes every 10 seconds so "Processing" turns into "Paid" by itself)
-  const { data: history = [], refetch } = useQuery({
+  const { data: historyData, refetch } = useQuery({
     queryKey: ["my-withdrawals", user?.email],
     enabled: !!user?.email,
     refetchInterval: 10000,
     queryFn: async () => (await axiosSecure.get(`/api/withdrawals/my/${user.email}`)).data,
   });
+  // never crash on an unexpected reply: treat anything that is not a list as empty
+  const history = Array.isArray(historyData) ? historyData : [];
 
   const handleWithdraw = async (e) => {
     e.preventDefault();
