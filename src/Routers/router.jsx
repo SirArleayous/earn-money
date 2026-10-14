@@ -4,37 +4,29 @@ import Home from "../Pages/Home";
 import Login from "../Pages/Authentications/Login";
 import Register from "../Pages/Authentications/Register";
 import ForgotPassword from "../Pages/Authentications/ForgotPassword";
-import Referral from "../Pages/Referral"; // Adjusted path
+import Referral from "../Pages/Referral/Referral";
 import ErrorPage from "../Pages/ErrorPage";
 import DashBoardLayout from "../Layouts/DashBoardLayout";
 import DashboardHome from "../Pages/DashboardHome";
 import PrivetRouter from "./PrivetRouter";
-
-// Fixed BuyerRoutes paths (changed ByerRoutes -> BuyerRoutes)
-import AddNewTasks from "../Pages/BuyerRoutes/AddNewTasks";
-import MyTasks from "../Pages/BuyerRoutes/MyTasks";
-import TaskToReview from "../Pages/BuyerRoutes/TaskToReview";
-import PurchaseCoin from "../Pages/BuyerRoutes/PurchaseCoin";
-import PaymentHistory from "../Pages/BuyerRoutes/PaymentHistory";
+import AddNewTasks from "../Pages/ByerRoutes/AddNewTasks";
+import MyTasks from "../Pages/ByerRoutes/MyTasks";
 import BuyerRouter from "./BuyerRouter";
-
-// Admin Routes
 import ManageUsers from "../Pages/AdminRoutes/ManageUsers";
 import ManageWithdrawals from "../Pages/AdminRoutes/ManageWithdrawals";
 import ActivityLog from "../Pages/AdminRoutes/ActivityLog";
-import ManageTasks from "../Pages/AdminRoutes/ManageTasks";
 import AdminRouter from "./AdminRouter";
-
-// Worker Routes
 import TaskLists from "../Pages/WorkerRoutes/TaskLists";
 import TaskDetails from "../Pages/WorkerRoutes/TaskDetails";
 import MySubmissions from "../Pages/WorkerRoutes/MySubmissions";
 import ApprovedSubmissions from "../Pages/WorkerRoutes/ApprovedSubmissions";
-import Withdrawals from "../Pages/WorkerRoutes/Withdrawals";
-import WorkerRouter from "./WorkerRouter";
-
-// Components & Utility Pages
+import TaskToReview from "../Pages/ByerRoutes/TaskToReview";
+import PurchaseCoin from "../Pages/ByerRoutes/PurchaseCoin";
+import PaymentHistory from "../Pages/ByerRoutes/PaymentHistory";
 import Payment from "../Pages/Payment/Payment";
+import Withdrawals from "../Pages/WorkerRoutes/Withdrawals";
+import ManageTasks from "../Pages/AdminRoutes/ManageTasks";
+import WorkerRouter from "./WorkerRouter";
 import About from "../components/About/About";
 import Contact from "../components/Contact/Contact";
 import Profile from "../Pages/Profile/Profile";
