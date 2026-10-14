@@ -3,7 +3,7 @@ import useRole from "../Hooks/useRole";
 import useAuth from "../Hooks/useAuth";
 
 import WorkerHome from "./WorkerRoutes/WorkerHome";
-import BuyerHome from "./ByerRoutes/BuyerHome"; // Updated 'ByerRoutes' path
+import BuyerHome from "./BuyerRoutes/BuyerHome"; // Fixed path spelling from ByerRoutes -> BuyerRoutes
 import AdminHome from "./AdminRoutes/AdminHome";
 
 const DashboardHome = () => {
@@ -18,13 +18,14 @@ const DashboardHome = () => {
     );
   }
 
-  const isAdmin = role === "Admin" || user?.email === "admin@sinex.com";
+  // Check role from Database or fallback check
+  const currentRole = role || user?.role;
 
-  if (isAdmin) {
+  if (currentRole === "Admin") {
     return <AdminHome />;
   }
 
-  if (role === "Buyer") {
+  if (currentRole === "Buyer" || currentRole === "Client") {
     return <BuyerHome />;
   }
 
