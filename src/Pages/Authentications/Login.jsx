@@ -122,16 +122,15 @@ const Login = () => {
               {errors.password && <p className={errCls}>{errors.password.message}</p>}
             </div>
 
-            {/* placeholders: these two are only for show for now */}
+            {/* "Remember me" is only for show for now */}
             <div className="flex items-center justify-between">
               <label className="flex items-center gap-2 text-xs text-slate-400 cursor-pointer">
                 <input type="checkbox" className="w-4 h-4 rounded accent-[#00d7c0]" />
                 Remember me
               </label>
-              <button type="button" onClick={() => toast("Password reset is coming soon.", { icon: "🔒" })}
-                className="text-xs font-bold text-[#00d7c0] underline">
+              <NavLink to="/forgot-password" className="text-xs font-bold text-[#00d7c0] underline">
                 Forgot Password?
-              </button>
+              </NavLink>
             </div>
 
             <div className="pt-1 space-y-3">

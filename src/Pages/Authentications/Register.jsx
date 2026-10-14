@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../components/AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useSearchParams } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { MdPerson, MdEmail, MdLock, MdPersonAdd, MdInfo, MdCheck, MdVerifiedUser } from "react-icons/md";
+import { MdPerson, MdEmail, MdLock, MdPersonAdd, MdInfo, MdCheck, MdVerifiedUser, MdCardGiftcard } from "react-icons/md";
 import axios from "axios";
 import CustomCursor from "../../components/CustomCursor/CustomCursor";
 import { getAuthErrorMessage } from "../../utils/authError";
@@ -30,6 +30,12 @@ const Register = () => {
   const [pending, setPending] = useState(null);
   const [strength, setStrength] = useState({ label: "Weak", color: "bg-red-500", progress: 0 });
   const navigate = useNavigate();
+  const [params] = useSearchParams();
+  // invite code from a referral link (?ref=CODE); remembered in case the person browses around first
+  const refFromLink = (params.get("ref") || localStorage.getItem("sinex_ref") || "").toUpperCase();
+  useEffect(() => {
+    if (params.get("ref")) localStorage.setItem("sinex_ref", params.get("ref"));
+  }, [params]);
 
   const {
     register,
@@ -37,7 +43,7 @@ const Register = () => {
     reset,
     getValues,
     formState: { errors, isSubmitting },
-  } = useForm();
+  } = useForm({ defaultValues: { referralCode: refFromLink } });
 
   // The server stores the chosen role and sets the starting coins itself.
   // axiosSecure's base URL is the server root, so the path must include /api.
@@ -100,7 +106,7 @@ const Register = () => {
     else setStrength({ label: "Strong", color: "bg-green-500", progress: 100 });
   };
 
-  const onSubmit = async ({ name, email, password, role, photo }) => {
+  const onSubmit = async ({ name, email, password, role, photo, referralCode }) => {
     let photoURL = avatarFor(name);
 
     if (photo?.[0] && imageKey) {
@@ -117,7 +123,7 @@ const Register = () => {
     try {
       await createUser(email, password);
       await updateUserProfile({ displayName: name, photoURL });
-      const profile = { name, photo: photoURL, email, role };
+      const profile = { name, photo: photoURL, email, role, ...(referralCode?.trim() ? { referralCode: referralCode.trim() } : {}) };
       const saved = await saveUser(profile);
       if (!saved) {
         setPending(profile); // stay here: going on now would show the wrong dashboard
@@ -126,6 +132,7 @@ const Register = () => {
 
       toast.success(`Welcome to SINEX! Registered as ${role === "Buyer" ? "Client / Business" : "Worker"}.`);
       reset();
+      localStorage.removeItem("sinex_ref");
 
       // /dashboard shows the Buyer, Worker or Admin home based on the role saved on the server
       navigate("/dashboard");
@@ -141,7 +148,8 @@ const Register = () => {
     if (!role) return toast.error("Choose an account type first, then continue with Google.");
     try {
       const { user } = await signInWithGoogle();
-      const profile = { name: user.displayName, email: user.email, photo: user.photoURL || avatarFor(user.displayName), role };
+      const code = (getValues("referralCode") || "").trim();
+      const profile = { name: user.displayName, email: user.email, photo: user.photoURL || avatarFor(user.displayName), role, ...(code ? { referralCode: code } : {}) };
       const saved = await saveUser(profile);
       if (!saved) {
         setPending(profile);
@@ -286,6 +294,19 @@ const Register = () => {
                   <MdInfo className="shrink-0" /> {strength.label}. Use letters (upper and lower case), numbers and symbols for a stronger password.
                 </p>
               </div>
+            </div>
+
+            <div>
+              <div className="flex items-center justify-between mb-1.5">
+                <label className="text-xs font-semibold text-slate-300">Referral Code</label>
+                <span className="text-[10px] font-bold tracking-widest text-slate-400 bg-[#0B0F19] border border-slate-800 rounded-full px-2.5 py-0.5">OPTIONAL</span>
+              </div>
+              <div className="relative">
+                <MdCardGiftcard className={iconCls} />
+                <input type="text" placeholder="Enter referral code" className={`${inputCls} uppercase`}
+                  {...register("referralCode")} />
+              </div>
+              <p className="text-xs mt-1.5 text-slate-500 flex items-center gap-1.5"><MdInfo className="shrink-0" /> Have a code? Enter it so your account is linked to your inviter.</p>
             </div>
 
             {/* checklist card (for show) */}
