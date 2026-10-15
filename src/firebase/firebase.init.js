@@ -1,4 +1,3 @@
-console.log("API KEY:", import.meta.env.VITE_FIREBASE_API_KEY);
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
@@ -6,6 +5,9 @@ import { getStorage } from "firebase/storage";
 // import { getAnalytics, isSupported } from "firebase/analytics"; // Analytics disabled to avoid 403 permission errors on Vercel
 
 const env = import.meta.env;
+
+// Debug log moved below imports so Vite build succeeds
+console.log("API KEY:", env.VITE_FIREBASE_API_KEY);
 
 const firebaseConfig = {
   apiKey: env.VITE_FIREBASE_API_KEY,
