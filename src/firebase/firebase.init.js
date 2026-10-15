@@ -3,7 +3,7 @@ import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
-import { getAnalytics, isSupported } from "firebase/analytics";
+// import { getAnalytics, isSupported } from "firebase/analytics"; // Analytics disabled to avoid 403 permission errors on Vercel
 
 const env = import.meta.env;
 
@@ -19,8 +19,8 @@ const firebaseConfig = {
 
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
-// Analytics only where supported (never blocks auth)
-isSupported().then((ok) => ok && getAnalytics(app)).catch(() => {});
+// Disabled Analytics call to prevent "403 PERMISSION_DENIED (installations/request-failed)" console warnings
+// isSupported().then((ok) => ok && getAnalytics(app)).catch(() => {});
 
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
