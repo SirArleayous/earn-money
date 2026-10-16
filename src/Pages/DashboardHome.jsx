@@ -3,7 +3,7 @@ import useRole from "../Hooks/useRole";
 import useAuth from "../Hooks/useAuth";
 
 import WorkerHome from "./WorkerRoutes/WorkerHome";
-import BuyerHome from "./BuyerRoutes/BuyerHome"; // Fixed path spelling from ByerRoutes -> BuyerRoutes
+import BuyerHome from "./ByerRoutes/BuyerHome"; // Fixed path spelling from BuyerRoutes -> ByerRoutes
 import AdminHome from "./AdminRoutes/AdminHome";
 
 const DashboardHome = () => {
