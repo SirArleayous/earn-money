@@ -87,14 +87,14 @@ const router = createBrowserRouter([
         path: "profile",
         element: <Profile></Profile>,
       },
-      {
-        path: "referral",
-        element: (
-          <PrivetRouter>
-            <Referral></Referral>
-          </PrivetRouter>
-        ),
-      },
+     // {
+       // path: "referral",
+        //element: (
+          //<PrivetRouter>
+            //<Referral></Referral>
+          //</PrivetRouter>
+       // ),
+     // },
       {
         path: "payment/:id",
         element: (
