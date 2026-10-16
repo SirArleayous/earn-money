@@ -63,10 +63,10 @@ const router = createBrowserRouter([
     path: "register",
     element: <Register></Register>,
   },
-  {
-    path: "forgot-password",
-    element: <ForgotPassword></ForgotPassword>,
-  },
+ // {
+  //  path: "forgot-password",
+   // element: <ForgotPassword></ForgotPassword>,
+// },
   {
     path: "dashboard",
     element: (
