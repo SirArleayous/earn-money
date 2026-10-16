@@ -3,8 +3,8 @@ import HomePageLayout from "../Layouts/HomePageLayout";
 import Home from "../Pages/Home";
 import Login from "../Pages/Authentications/Login";
 import Register from "../Pages/Authentications/Register";
-//import ForgotPassword from "../Pages/Authentications/ForgotPassword";
-//import Referral from "../Pages/Referral/Referral";
+import ForgotPassword from "../Pages/Authentications/ForgotPassword";
+import Referral from "../Pages/Referral/Referral";
 import ErrorPage from "../Pages/ErrorPage";
 import DashBoardLayout from "../Layouts/DashBoardLayout";
 import DashboardHome from "../Pages/DashboardHome";
@@ -63,10 +63,10 @@ const router = createBrowserRouter([
     path: "register",
     element: <Register></Register>,
   },
- // {
-  //  path: "forgot-password",
-   // element: <ForgotPassword></ForgotPassword>,
-// },
+ {
+    path: "forgot-password",
+   element: <ForgotPassword></ForgotPassword>,
+ },
   {
     path: "dashboard",
     element: (
@@ -87,14 +87,14 @@ const router = createBrowserRouter([
         path: "profile",
         element: <Profile></Profile>,
       },
-     // {
-       // path: "referral",
-        //element: (
-          //<PrivetRouter>
-            //<Referral></Referral>
-          //</PrivetRouter>
-       // ),
-     // },
+      {
+        path: "referral",
+        element: (
+          <PrivetRouter>
+            <Referral></Referral>
+          </PrivetRouter>
+        ),
+      },
       {
         path: "payment/:id",
         element: (
