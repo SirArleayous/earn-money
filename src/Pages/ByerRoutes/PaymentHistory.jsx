@@ -8,71 +8,45 @@ import { ThemeContext } from "../../context/ThemeContext";
 const PaymentHistory = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const {theme} = useContext(ThemeContext)
-  const {
-    data: myHistories = [],
-    isLoading,
-    refetch,
-  } = useQuery({
+  const { theme } = useContext(ThemeContext);
+
+  const { data: myHistories = { payments: [], deposits: [] } } = useQuery({
     queryKey: ["myHistories", user?.email],
     queryFn: async () => {
-      const { data } = await axiosSecure.get(`api/payments/history/${user?.email}`);
-      console.log(data);
+      const { data } = await axiosSecure.get(`/api/payments/history/${user?.email}`);
       return data;
     },
+    enabled: !!user?.email,
   });
 
-  console.log(myHistories);
+  const list = [...(myHistories.deposits || []), ...(myHistories.payments || [])];
 
   return (
     <div>
       <div className="py-10">
-        <div className={`w-[60%] mx-auto shadow-xl rounded-xl py-10 ${
-            theme === "light"
-              ? "backdrop-blur-xl bg-[#FFFFFF] text-black"
-              : "dark:bg-gradient-to-r from-[#020710] to-[#1b2028] dark:text-white"
-          }`}>
-          <h2 className="font-bold text-center text-3xl">
-            Payment History Overview
-          </h2>
+        <div className={`w-[60%] mx-auto shadow-xl rounded-xl py-10 ${theme === "light" ? "backdrop-blur-xl bg-[#FFFFFF] text-black" : "dark:bg-gradient-to-r from-[#020710] to-[#1b2028] dark:text-white"}`}>
+          <h2 className="font-bold text-center text-3xl">Payment History Overview</h2>
           <p className="text-center w-[50%] mx-auto py-3">
-            Track your transactions with ease, including amounts, dates, and
-            statuses, for complete payment transparency.
+            Track your coin deposit requests and successful account top-ups.
           </p>
         </div>
       </div>
-      <div className={`w-[90%] mx-auto p-10 rounded-xl shadow-xl ${
-            theme === "light"
-              ? "backdrop-blur-xl bg-[#FFFFFF] text-black"
-              : "dark:bg-gradient-to-r from-[#020710] to-[#1b2028] dark:text-white"
-          }`}>
+      <div className={`w-[90%] mx-auto p-10 rounded-xl shadow-xl ${theme === "light" ? "backdrop-blur-xl bg-[#FFFFFF] text-black" : "dark:bg-gradient-to-r from-[#020710] to-[#1b2028] dark:text-white"}`}>
         <div className="overflow-x-auto">
-          <table className="table">
-            {/* head */}
+          <table className="table w-full">
             <thead>
-              <tr className={` ${
-      theme === "light"
-        ? " text-black"
-        : " dark:text-white"
-    }`}>
-                <th>Transaction Id</th>
-                <th>email</th>
-                <th>amount</th>
+              <tr className={theme === "light" ? "text-black" : "dark:text-white"}>
+                <th>Reference</th>
+                <th>Email</th>
+                <th>Amount</th>
                 <th>Status</th>
-                <th>currency</th>
-                <th>coin</th>
-                <th>date</th>
+                <th>Coins</th>
+                <th>Date</th>
               </tr>
             </thead>
             <tbody>
-              {/* row 1 */}
-
-              {myHistories.map((history, index) => (
-                <PaymentHistoryTable
-                theme={theme}
-                  key={index}
-                  history={history}
-                ></PaymentHistoryTable>
+              {list.map((history, index) => (
+                <PaymentHistoryTable theme={theme} key={history._id || index} history={history} />
               ))}
             </tbody>
           </table>
