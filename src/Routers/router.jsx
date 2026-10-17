@@ -3,8 +3,6 @@ import HomePageLayout from "../Layouts/HomePageLayout";
 import Home from "../Pages/Home";
 import InvestorLogin from "../Pages/Authentications/InvestorLogin";
 import InvestorRegister from "../Pages/Authentications/InvestorRegister";
-import InvestorLogin from "../Pages/Authentications/InvestorLogin";
-import InvestorRegister from "../Pages/Authentications/InvestorRegister";
 import InvestorHome from "../Pages/Dashboard/InvestorHome";
 import Login from "../Pages/Authentications/Login";
 import Register from "../Pages/Authentications/Register";
