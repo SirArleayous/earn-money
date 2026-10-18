@@ -3,6 +3,7 @@ import HomePageLayout from "../Layouts/HomePageLayout";
 import Home from "../Pages/Home";
 import InvestorLogin from "../Pages/Authentications/InvestorLogin";
 import InvestorRegister from "../Pages/Authentications/InvestorRegister";
+import InvestorLayout from "../Layouts/InvestorLayout";
 import InvestorHome from "../Pages/Dashboard/InvestorHome";
 import Login from "../Pages/Authentications/Login";
 import Register from "../Pages/Authentications/Register";
@@ -38,37 +39,37 @@ import TopRatedTaskDetails from "../components/TopRatedTasks/TopRatedTaskDetails
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePageLayout />,
+    element: <HomePageLayout></HomePageLayout>,
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: <Home></Home>,
       },
       {
         path: "about",
-        element: <About />,
+        element: <About></About>,
       },
       {
         path: "contact",
-        element: <Contact />,
+        element: <Contact></Contact>,
       },
       {
         path: "task/:id",
-        element: <TopRatedTaskDetails />,
+        element: <TopRatedTaskDetails></TopRatedTaskDetails>,
       },
     ],
   },
   {
     path: "login",
-    element: <Login />,
+    element: <Login></Login>,
   },
   {
     path: "register",
-    element: <Register />,
+    element: <Register></Register>,
   },
   {
     path: "forgot-password",
-    element: <ForgotPassword />,
+    element: <ForgotPassword></ForgotPassword>,
   },
   {
     path: "investor-login",
@@ -80,17 +81,39 @@ const router = createBrowserRouter([
   },
   {
     path: "investor",
-    element: <InvestorHome />,
+    element: <InvestorLayout />,
+    children: [
+      {
+        index: true,
+        element: <InvestorHome />,
+      },
+      {
+        path: "dashboard",
+        element: <InvestorHome />,
+      },
+      {
+        path: "portfolio",
+        element: <InvestorHome />,
+      },
+      {
+        path: "dividends",
+        element: <InvestorHome />,
+      },
+    ],
   },
   {
     path: "dashboard",
-    element: <DashBoardLayout />,
+    element: (
+      // <PrivetRouter>
+        <DashBoardLayout></DashBoardLayout>
+      //</PrivetRouter>
+    ),
     children: [
       {
         index: true,
         element: (
           <PrivetRouter>
-            <DashboardHome />
+            <DashboardHome></DashboardHome>
           </PrivetRouter>
         ),
       },
@@ -100,13 +123,13 @@ const router = createBrowserRouter([
       },
       {
         path: "profile",
-        element: <Profile />,
+        element: <Profile></Profile>,
       },
       {
         path: "referral",
         element: (
           <PrivetRouter>
-            <Referral />
+            <Referral></Referral>
           </PrivetRouter>
         ),
       },
@@ -115,7 +138,7 @@ const router = createBrowserRouter([
         element: (
           <PrivetRouter>
             <BuyerRouter>
-              <Payment />
+              <Payment></Payment>
             </BuyerRouter>
           </PrivetRouter>
         ),
@@ -125,7 +148,7 @@ const router = createBrowserRouter([
         element: (
           <PrivetRouter>
             <BuyerRouter>
-              <AddNewTasks />
+              <AddNewTasks></AddNewTasks>
             </BuyerRouter>
           </PrivetRouter>
         ),
@@ -135,7 +158,7 @@ const router = createBrowserRouter([
         element: (
           <PrivetRouter>
             <BuyerRouter>
-              <MyTasks />
+              <MyTasks></MyTasks>
             </BuyerRouter>
           </PrivetRouter>
         ),
@@ -145,7 +168,7 @@ const router = createBrowserRouter([
         element: (
           <PrivetRouter>
             <BuyerRouter>
-              <TaskToReview />
+              <TaskToReview></TaskToReview>
             </BuyerRouter>
           </PrivetRouter>
         ),
@@ -155,7 +178,7 @@ const router = createBrowserRouter([
         element: (
           <PrivetRouter>
             <BuyerRouter>
-              <PurchaseCoin />
+              <PurchaseCoin></PurchaseCoin>
             </BuyerRouter>
           </PrivetRouter>
         ),
@@ -165,7 +188,7 @@ const router = createBrowserRouter([
         element: (
           <PrivetRouter>
             <BuyerRouter>
-              <PaymentHistory />
+              <PaymentHistory></PaymentHistory>
             </BuyerRouter>
           </PrivetRouter>
         ),
@@ -175,7 +198,7 @@ const router = createBrowserRouter([
         element: (
           <PrivetRouter>
             <AdminRouter>
-              <ManageTasks />
+              <ManageTasks></ManageTasks>
             </AdminRouter>
           </PrivetRouter>
         ),
@@ -185,7 +208,7 @@ const router = createBrowserRouter([
         element: (
           <PrivetRouter>
             <AdminRouter>
-              <ManageUsers />
+              <ManageUsers></ManageUsers>
             </AdminRouter>
           </PrivetRouter>
         ),
@@ -195,17 +218,18 @@ const router = createBrowserRouter([
         element: (
           <PrivetRouter>
             <AdminRouter>
-              <ManageWithdrawals />
+              <ManageWithdrawals></ManageWithdrawals>
             </AdminRouter>
           </PrivetRouter>
         ),
       },
       {
+        // alias: the old sidebar link pointed here
         path: "admin/withdrawals",
         element: (
           <PrivetRouter>
             <AdminRouter>
-              <ManageWithdrawals />
+              <ManageWithdrawals></ManageWithdrawals>
             </AdminRouter>
           </PrivetRouter>
         ),
@@ -215,7 +239,7 @@ const router = createBrowserRouter([
         element: (
           <PrivetRouter>
             <AdminRouter>
-              <ActivityLog />
+              <ActivityLog></ActivityLog>
             </AdminRouter>
           </PrivetRouter>
         ),
@@ -224,7 +248,7 @@ const router = createBrowserRouter([
         path: "taskDetails/:id",
         element: (
           <PrivetRouter>
-            <TaskDetails />
+            <TaskDetails></TaskDetails>
           </PrivetRouter>
         ),
       },
@@ -233,7 +257,7 @@ const router = createBrowserRouter([
         element: (
           <PrivetRouter>
             <WorkerRouter>
-              <MySubmissions />
+              <MySubmissions></MySubmissions>
             </WorkerRouter>
           </PrivetRouter>
         ),
@@ -243,7 +267,7 @@ const router = createBrowserRouter([
         element: (
           <PrivetRouter>
             <WorkerRouter>
-              <ApprovedSubmissions />
+              <ApprovedSubmissions></ApprovedSubmissions>
             </WorkerRouter>
           </PrivetRouter>
         ),
@@ -253,7 +277,7 @@ const router = createBrowserRouter([
         element: (
           <PrivetRouter>
             <WorkerRouter>
-              <Withdrawals />
+              <Withdrawals></Withdrawals>
             </WorkerRouter>
           </PrivetRouter>
         ),
@@ -263,7 +287,7 @@ const router = createBrowserRouter([
         element: (
           <PrivetRouter>
             <WorkerRouter>
-              <TaskLists />
+              <TaskLists></TaskLists>
             </WorkerRouter>
           </PrivetRouter>
         ),
@@ -272,7 +296,7 @@ const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <ErrorPage />,
+    element: <ErrorPage></ErrorPage>,
   },
 ]);
 
