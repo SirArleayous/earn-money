@@ -23,6 +23,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+
   const from = location.state?.from?.pathname || "/dashboard";
 
   const {
@@ -118,7 +119,6 @@ const Login = () => {
               <p className="text-xs text-slate-400">Enter your credentials to access your dashboard.</p>
             </div>
           </div>
-
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>
               <label className={labelCls}>Email Address</label>
@@ -133,7 +133,6 @@ const Login = () => {
               </div>
               {errors.email && <p className={errCls}>{errors.email.message}</p>}
             </div>
-
             <div>
               <label className={labelCls}>Password</label>
               <div className="relative">
@@ -154,7 +153,6 @@ const Login = () => {
               </div>
               {errors.password && <p className={errCls}>{errors.password.message}</p>}
             </div>
-
             <div className="flex items-center justify-between">
               <label className="flex items-center gap-2 text-xs text-slate-400 cursor-pointer">
                 <input type="checkbox" className="w-4 h-4 rounded accent-[#00d7c0]" />
@@ -164,7 +162,6 @@ const Login = () => {
                 Forgot Password?
               </NavLink>
             </div>
-
             <div className="pt-1 space-y-3">
               <button
                 type="submit"
@@ -189,7 +186,6 @@ const Login = () => {
             </div>
           </form>
         </div>
-
         <p className="text-center text-sm text-slate-400">
           Don't have an account?{" "}
           <NavLink to="/register" className="text-[#00d7c0] font-bold underline">
