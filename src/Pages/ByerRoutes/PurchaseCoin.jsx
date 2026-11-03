@@ -70,7 +70,7 @@ const PurchaseCoin = () => {
             }`}
           >
             <FaCoins className='text-3xl text-[#00d7c0] mx-auto mb-2' />
-            <h3 className='text-2xl font-bold text-white'>{pkg.coins} Deposit/Invest</h3>
+            <h3 className='text-2xl font-bold text-white'>{pkg.coins} Coins</h3>
             <p className='text-slate-400 text-xs font-semibold'>${pkg.price} USD</p>
           </div>
         ))}
