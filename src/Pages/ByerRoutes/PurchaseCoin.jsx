@@ -38,7 +38,7 @@ const PurchaseCoin = () => {
   const paymentHistory = [...depositsList, ...paymentsList];
 
   const handleSelectPackage = (pkg) => {
-    setSelectedCoins(pkg.coins);
+    setSelected(pkg.coins);
     setSelectedPrice(pkg.price);
   };
 
@@ -51,7 +51,7 @@ const PurchaseCoin = () => {
     <div className='max-w-5xl mx-auto space-y-10 p-6'>
       <div className='text-center space-y-2'>
         <h2 className='text-3xl font-extrabold text-white'>
-          Purchase <span className='text-[#00d7c0]'>Task Coins</span>
+          Purchase <span className='text-[#00d7c0]'>Task </span>
         </h2>
         <p className='text-slate-400 text-sm max-w-md mx-auto'>
           Top up your client coin balance to create and fund worker task listings across the SINEX network.
@@ -64,13 +64,13 @@ const PurchaseCoin = () => {
             key={pkg.coins}
             onClick={() => handleSelectPackage(pkg)}
             className={`p-6 rounded-2xl border transition-all cursor-pointer text-center space-y-2 ${
-              selectedCoins === pkg.coins
+              selected === pkg.coins
                 ? 'bg-[#00d7c0]/10 border-[#00d7c0] shadow-xl shadow-[#00d7c0]/10'
                 : 'bg-[#111827]/80 border-slate-800 hover:border-slate-700'
             }`}
           >
             <FaCoins className='text-3xl text-[#00d7c0] mx-auto mb-2' />
-            <h3 className='text-2xl font-bold text-white'>{pkg.coins} Coins</h3>
+            <h3 className='text-2xl font-bold text-white'>{pkg.coins} Deposit/Invest</h3>
             <p className='text-slate-400 text-xs font-semibold'>${pkg.price} USD</p>
           </div>
         ))}
