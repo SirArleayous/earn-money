@@ -20,7 +20,7 @@ const TABS = {
     { to: "/dashboard/addNewTasks", label: "Post Task", icon: FaPlusCircle },
     { to: "/dashboard/myTasks", label: "My Tasks", icon: FaTasks },
     { to: "/dashboard/tasksToReview", label: "Review", icon: FaClipboardList },
-    { to: "/dashboard/purchaseCoin", label: "Coins", icon: FaCoins },
+    { to: "/dashboard/purchaseCoin", label: "Deposit/Invest", icon: FaCoins },
   ],
   admin: [
     { to: "/dashboard", label: "Home", icon: FaHome, end: true },
