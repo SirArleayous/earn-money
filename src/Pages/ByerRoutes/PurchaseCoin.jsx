@@ -71,7 +71,7 @@ const PurchaseCoin = () => {
           >
             <FaCoins className='text-3xl text-[#00d7c0] mx-auto mb-2' />
             <h3 className='text-2xl font-bold text-white'>{pkg.coins} Coins</h3>
-            <p className='text-slate-400 text-xs font-semibold'>${pkg.price} USD</p>
+            <p className='text-slate-400 text-xs font-semibold'>USh{pkg.price} UGX</p>
           </div>
         ))}
       </div>
@@ -87,7 +87,7 @@ const PurchaseCoin = () => {
             <input
               type='text'
               readOnly
-              value={`${selectedCoins} Coins ($${selectedPrice} USD)`}
+              value={`${selectedCoins} Coins (${selectedPrice} UGX)`}
               className='w-full bg-[#0B0F19] border border-slate-800 rounded-xl px-4 py-3 text-[#00d7c0] font-bold outline-none cursor-not-allowed'
             />
           </div>
@@ -110,7 +110,7 @@ const PurchaseCoin = () => {
             <thead>
               <tr className='bg-[#0B0F19] text-xs uppercase tracking-wider text-slate-400 border-b border-slate-800'>
                 <th className='p-4'>Reference / ID</th>
-                <th className='p-4'>Amount ($)</th>
+                <th className='p-4'>Amount (UGX)</th>
                 <th className='p-4'>Coins Added</th>
                 <th className='p-4'>Method</th>
                 <th className='p-4'>Status</th>
@@ -129,7 +129,7 @@ const PurchaseCoin = () => {
                       {item.reference || item.transaction_id || item._id?.slice(-8) || 'N/A'}
                     </td>
                     <td className='p-4 font-semibold text-white'>
-                      ${item.price || item.amount || 0}
+                      UGX{item.price || item.amount || 0}
                     </td>
                     <td className='p-4 font-bold text-[#00d7c0]'>
                       +{item.coins || item.coins_added || 0} Coins
