@@ -13,11 +13,14 @@ const PurchaseCoin = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const coinPackages = [
-    { coins: 100, price: 25000 },
-    { coins: 500, price: 45000 },
-    { coins: 500, price: 50000 },
-    { coins: 1000, price: 85000 },
-    { coins: 2500, price: 200000 },
+    { coins: 100, price: 25000 },    // Rate: 250 UGX per coin
+    { coins: 500, price: 45000 },    // Rate: 90 UGX per coin
+    { coins: 1000, price: 85000 },   // Rate: 85 UGX per coin
+    { coins: 2500, price: 200000 },  // Rate: 80 UGX per coin
+    { coins: 6000, price: 450000 },  // Rate: 75 UGX per coin
+    { coins: 13000, price: 950000 }, // Rate: ~73 UGX per coin
+    { coins: 28000, price: 1500000 },// Rate: ~53.5 UGX per coin
+    { coins: 40000, price: 2000000 } // Rate: 50 UGX per coin
   ];
 
   const { data: rawHistory = null, isLoading } = useQuery({
