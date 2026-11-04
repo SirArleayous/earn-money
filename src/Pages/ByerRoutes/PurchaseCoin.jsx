@@ -13,10 +13,11 @@ const PurchaseCoin = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const coinPackages = [
-    { coins: 100, price: 10 },
-    { coins: 500, price: 45 },
-    { coins: 1000, price: 85 },
-    { coins: 2500, price: 200 },
+    { coins: 100, price: 25000 },
+    { coins: 500, price: 45000 },
+    { coins: 500, price: 50000 },
+    { coins: 1000, price: 85000 },
+    { coins: 2500, price: 200000 },
   ];
 
   const { data: rawHistory = null, isLoading } = useQuery({
