@@ -24,7 +24,7 @@ const PaymentHistoryTable = ({ history,theme }) => {
         </div>
       </td>
       <td>{email}</td>
-      <td>{mainAmount}$</td>
+      <td>{mainAmount}USh</td>
       <td>{status}</td>
       <td>{currency}</td>
       <td>{coin}</td>
