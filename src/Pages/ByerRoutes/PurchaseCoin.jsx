@@ -38,7 +38,7 @@ const PurchaseCoin = () => {
   const paymentHistory = [...depositsList, ...paymentsList];
 
   const handleSelectPackage = (pkg) => {
-    setSelected(pkg.coins);
+    setSelectedCoins(pkg.coins);
     setSelectedPrice(pkg.price);
   };
 
@@ -64,7 +64,7 @@ const PurchaseCoin = () => {
             key={pkg.coins}
             onClick={() => handleSelectPackage(pkg)}
             className={`p-6 rounded-2xl border transition-all cursor-pointer text-center space-y-2 ${
-              selected === pkg.coins
+              selectedCoins === pkg.coins
                 ? 'bg-[#00d7c0]/10 border-[#00d7c0] shadow-xl shadow-[#00d7c0]/10'
                 : 'bg-[#111827]/80 border-slate-800 hover:border-slate-700'
             }`}
