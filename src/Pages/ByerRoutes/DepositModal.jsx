@@ -10,7 +10,7 @@ const PAYMENT_CATEGORIES = [
   { id: "moniepoint", method: "Moniepoint", icon: FaBuilding },
   { id: "tonkeeper", method: "Tonkeeper", icon: FaWallet },
   { id: "paypal", method: "PayPal", icon: FaPaypal },
-  { id: "banks", method: "Commercial Banks", icon: FaUniversity },
+  { id: "banks", method: "MoMo or Anyother Ugandan Bank", icon: FaUniversity },
 ];
 
 const DepositModal = ({ coins, price, onClose }) => {
