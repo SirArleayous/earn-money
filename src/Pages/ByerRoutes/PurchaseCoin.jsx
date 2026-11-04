@@ -54,7 +54,7 @@ const PurchaseCoin = () => {
           Purchase <span className='text-[#00d7c0]'>Task </span>
         </h2>
         <p className='text-slate-400 text-sm max-w-md mx-auto'>
-          Top up your client coin balance to create and fund worker task listings across the SINEX network.
+          Invest with SINEX and Unlock opportunities to grow your money. Enjoy the potential to earn up to 50% returns on your investment.
         </p>
       </div>
 
