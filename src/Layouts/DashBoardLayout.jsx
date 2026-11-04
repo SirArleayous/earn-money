@@ -75,7 +75,7 @@ const DashBoardLayout = () => {
         <div className="relative w-full max-w-lg min-h-screen bg-[#0B0F19] text-slate-100 flex flex-col sm:border-x sm:border-slate-800/80">
           <DashboardNavbar myInfo={myInfo} />
           <main className="flex-1 px-4 pt-4 pb-28 overflow-x-hidden bg-gradient-to-b from-[#0B0F19] via-[#0d1322] to-[#0B0F19]">
-            {serverDown && (
+          {/*  {serverDown && (
               <div className="mb-4 rounded-2xl border border-rose-500/40 bg-rose-500/10 p-3 text-xs text-rose-200 space-y-1.5">
                 <p className="font-bold text-sm">Cannot reach the server</p>
                 <p className="break-all">This site is trying: <span className="font-mono">{apiRoot}</span></p>
@@ -84,7 +84,7 @@ const DashBoardLayout = () => {
                   {isFetching ? "Checking..." : "Try again"}
                 </button>
               </div>
-            )}
+            )} */}
             <Outlet />
           </main>
           <Sidebar />
