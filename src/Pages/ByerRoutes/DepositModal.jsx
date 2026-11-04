@@ -97,7 +97,7 @@ const DepositModal = ({ coins, price, onClose }) => {
         <div>
           <h3 className="text-xl font-bold text-white">Deposit Account Details</h3>
           <p className="text-xs text-slate-400 mt-1">
-            Transfer <span className="text-[#00d7c0] font-bold">${price} USD</span> for{" "}
+            Transfer <span className="text-[#00d7c0] font-bold">USh{price} UGX</span> for{" "}
             <span className="text-[#00d7c0] font-bold">{coins} Coins</span> to any of the options below.
           </p>
         </div>
