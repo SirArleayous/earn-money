@@ -7,7 +7,7 @@ import { getStorage } from "firebase/storage";
 const env = import.meta.env;
 
 // Debug log moved below imports so Vite build succeeds
-console.log("API KEY:", env.VITE_FIREBASE_API_KEY);
+// console.log("API KEY:", env.VITE_FIREBASE_API_KEY);
 
 const firebaseConfig = {
   apiKey: env.VITE_FIREBASE_API_KEY,
