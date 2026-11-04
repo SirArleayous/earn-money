@@ -135,7 +135,7 @@ const BuyerHome = () => {
                 <button className="font-bold text-2xl py-3 flex justify-center">
                   <MdOutlinePayment />
                 </button>
-                <div className="stat-value text-center">{usdAmount}$</div>
+                <div className="stat-value text-center">{usdAmount}USh</div>
               </div>
             </div>
           </div>
