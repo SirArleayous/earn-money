@@ -8,7 +8,7 @@ const PAYMENT_CATEGORIES = [
   { id: "binance", method: "Binance Wallet", icon: FaWallet },
   { id: "opay", method: "Opay", icon: FaBuilding },
   { id: "moniepoint", method: "Moniepoint", icon: FaBuilding },
-  { id: "tonkeeper", method: "Tonkeeper", icon: FaWallet },
+  { id: "tonkeeper", method: "Mobile Money", icon: FaWallet },
   { id: "paypal", method: "PayPal", icon: FaPaypal },
   { id: "banks", method: "MoMo or Anyother Ugandan Bank", icon: FaUniversity },
 ];
@@ -43,9 +43,9 @@ const DepositModal = ({ coins, price, onClose }) => {
     if (cat.includes("binance")) return m.includes("binance");
     if (cat.includes("opay")) return m.includes("opay");
     if (cat.includes("moniepoint")) return m.includes("moniepoint");
-    if (cat.includes("tonkeeper")) return m.includes("tonkeeper");
+    if (cat.includes("Mobile Money")) return m.includes("mobile") || m.includes("money");
     if (cat.includes("paypal")) return m.includes("paypal");
-    if (cat.includes("commercial")) return m.includes("bank") || m.includes("commercial");
+    if (cat.includes("MoMo")) return m.includes("MoMo");
     return m.includes(cat);
   });
 
