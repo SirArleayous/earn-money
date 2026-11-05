@@ -64,9 +64,9 @@ const PaymentAccounts = () => {
               <option value="Opay">Opay</option>
               <option value="Moniepoint">Moniepoint</option>
               <option value="Binance Wallet">Binance Wallet</option>
-              <option value="Tonkeeper">Tonkeeper</option>
+              <option value="Mobile Money">Mobile Money</option>
               <option value="PayPal">PayPal</option>
-              <option value="Commercial Bank">Commercial Bank</option>
+              <option value="MoMo">MoMo</option>
             </select>
           </div>
           <div>
