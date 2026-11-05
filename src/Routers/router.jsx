@@ -1,6 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import HomePageLayout from "../Layouts/HomePageLayout";
 import Home from "../Pages/Home";
+import InvestorLogin from "../Pages/Authentications/InvestorLogin";
+import InvestorRegister from "../Pages/Authentications/InvestorRegister";
+import InvestorLayout from "../Layouts/InvestorLayout";
+import InvestorHome from "../Pages/Dashboard/InvestorHome";
 import Login from "../Pages/Authentications/Login";
 import Register from "../Pages/Authentications/Register";
 import ForgotPassword from "../Pages/Authentications/ForgotPassword";
@@ -63,16 +67,46 @@ const router = createBrowserRouter([
     path: "register",
     element: <Register></Register>,
   },
- {
+  {
     path: "forgot-password",
-   element: <ForgotPassword></ForgotPassword>,
- },
+    element: <ForgotPassword></ForgotPassword>,
+  },
+  {
+    path: "investor-login",
+    element: <InvestorLogin />,
+  },
+  {
+    path: "investor-register",
+    element: <InvestorRegister />,
+  },
+  {
+    path: "investor",
+    element: <InvestorLayout />,
+    children: [
+      {
+        index: true,
+        element: <InvestorHome />,
+      },
+      {
+        path: "dashboard",
+        element: <InvestorHome />,
+      },
+      {
+        path: "portfolio",
+        element: <InvestorHome />,
+      },
+      {
+        path: "dividends",
+        element: <InvestorHome />,
+      },
+    ],
+  },
   {
     path: "dashboard",
     element: (
-      <PrivetRouter>
+      // <PrivetRouter>
         <DashBoardLayout></DashBoardLayout>
-      </PrivetRouter>
+      //</PrivetRouter>
     ),
     children: [
       {
@@ -82,6 +116,10 @@ const router = createBrowserRouter([
             <DashboardHome></DashboardHome>
           </PrivetRouter>
         ),
+      },
+      {
+        path: "investor",
+        element: <InvestorHome />,
       },
       {
         path: "profile",
